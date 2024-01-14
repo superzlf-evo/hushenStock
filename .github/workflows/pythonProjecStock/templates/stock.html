@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>股票数据分析</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>股票数据分析</h1>
+    </header>
+
+    <!-- 通过关键字搜索股票列表的表单 -->
+    <section>
+        <form method="POST" action="/">
+            <label for="stock_code">请输入股票关键字：</label>
+            <input type="text" id="stock_code" name="stock_code" required>
+            <button type="submit">获取股票列表</button>
+        </form>
+    </section>
+
+    <!-- 显示通过关键字搜索到的股票列表 -->
+    <section>
+        {% if data is not none and not data.empty %}
+            <table >
+                <thead>
+                    <caption>以下是查询到的相关股票</caption>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>股票符号</th>
+                        <th>名称</th>
+                        <th>地区</th>
+                        <th>行业</th>
+                        <th>市场</th>
+                        <th>上市日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data.iterrows() %}
+                    <tr>
+                        <td>{{ row[1]['ts_code'] }}</td>
+                        <td>{{ row[1]['symbol'] }}</td>
+                        <td>{{ row[1]['name'] }}</td>
+                        <td>{{ row[1]['area'] }}</td>
+                        <td>{{ row[1]['industry'] }}</td>
+                        <td>{{ row[1]['market'] }}</td>
+                        <td>{{ row[1]['list_date'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </section>
+
+    <!-- 通过股票代码查询具体股票信息的表单 -->
+    <!-- <section>
+        <form method="POST" action="/stock_detail">
+            <label for="stock_detail_code">请输入股票代码：</label>
+            <input type="text" id="stock_detail_code" name="stock_detail_code" required>
+            <button type="submit">获取股票详细信息</button>
+        </form>
+    </section> -->
+
+    <!-- 通过股票代码查询具体股票信息的表单 -->
+<section>
+    <form method="POST" action="/stock_analysis">
+        <label for="stock_detail_code">请输入股票代码：</label>
+        <input type="text" id="stock_detail_code" name="stock_detail_code" required>
+        <button type="submit">获取股票详细信息</button>
+    </form>
+</section>
+
+
+    <!-- 显示通过股票代码查询到的股票详细信息 -->
+    <section>
+        {% if stock_detail is not none and not stock_detail.empty%}
+        <div class="table-container">
+            <table >
+                <thead>
+                    <caption>以下是该股票今年的股市信息</caption>
+                    <tr>
+                        <th>股票代码</th>
+                        <th>交易日期</th>
+                        <th>开盘价</th>
+                        <th>最高价</th>
+                        <th>最低价</th>
+                        <th>收盘价</th>
+                        <th>前收盘价</th>
+                        <th>涨跌额</th>
+                        <th>涨跌幅</th>
+                        <th>成交量</th>
+                        <th>成交额</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in stock_detail.iterrows() %}
+                    <tr>
+                        <td>{{ row[1]['ts_code'] }}</td>
+                        <td>{{ row[1]['trade_date'] }}</td>
+                        <td>{{ row[1]['open'] }}</td>
+                        <td>{{ row[1]['high'] }}</td>
+                        <td>{{ row[1]['low'] }}</td>
+                        <td>{{ row[1]['close'] }}</td>
+                        <td>{{ row[1]['pre_close'] }}</td>
+                        <td>{{ row[1]['change'] }}</td>
+                        <td>{{ row[1]['pct_chg'] }}</td>
+                        <td>{{ row[1]['vol'] }}</td>
+                        <td>{{ row[1]['amount'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </section>
+    {% if stock_detail is not none and not stock_detail.empty%}
+    <div class="image-container">
+        <div class="caption">金叉和死叉图表</div>
+        <img src="{{ url_for('static', filename='images/GD_cha.png') }}" alt="Gold and Death Cross Chart">
+    </div>
+    
+    <div class="image-container">
+        <div class="caption">未来预测图表</div>
+        <img src="{{ url_for('static', filename='images/Future_cha.png') }}" alt="Future Prediction Chart">
+    </div>
+    {% endif %}
+    <footer>
+        <p>股票数据分析应用</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

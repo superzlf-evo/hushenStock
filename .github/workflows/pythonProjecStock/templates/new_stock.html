@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <!-- <title>股票分析报告</title>  -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/new_style.css') }}">
+ </head> 
+ <body>
+    <header>
+        <h1>{{stock_name}}股票分析</h1> 
+    </header> 
+  <div class="report-container"> 
+   <p style="text-indent:2em;"> 股票{{stock_name}}近日在股市中的表现引人注目。该股开盘价为{{stock_detail_data.open}} 收盘价为{{stock_detail_data.close}},较昨日收盘价变动了 {{stock_detail_data.change}} 元，变动百分比为 {{stock_detail_data.pct_chg}}%。 在今日的交易中，股票达到了最高价 {{stock_detail_data.high}} 元和最低价 {{stock_detail_data.low}} 元，体现了市场的波动性。 </p>
+   <p style="text-indent:2em;">在最近的股市交易中，{{stock_name}}（股票代码：{{stock_detail_data.ts_code}}）引起了投资者的极大关注。股票的交易价格出现了显著的变化， 相比于前一交易日， {% if stock_detail_data.change >= 0 %} 上涨了{{ stock_detail_data.change }} {% else %} 下跌了{{ -stock_detail_data.change }} {% endif %} 元， 这代表了{{stock_detail_data.pct_chg}}%的涨跌幅。 这一变动显示了市场对于公司的反应。今日，该股的成交量达到了{{stock_detail_data.vol}}万股，成交金额高达{{stock_detail_data.amount}}万元， 反映了市场对此股的高度活跃度和投资者的浓厚兴趣。</p>
+   <p style="text-indent:2em;">{{stock_name}}（股票代码：{{stock_detail_data.ts_code}}）地址在{{basic_info.province}}{{basic_info.city}}，{{basic_info.introduction}}
+    公司拥有 {{basic_info.employees}} 名员工，其业务范围主要是 {{basic_info.business_scope}}。
+    这些业务领域在当今市场中占有重要地位，是公司持续增长和创新的关键。”</p>
+   <h2>前100天的股票买入卖出分析</h2> 
+   <p style="text-indent:2em;">   在股票系统中，金叉和死叉是两个重要的技术指标，它们分别代表看涨和看跌的信号 金叉是当短期均线从下方向上穿越长期均线时，形成的交叉称为金叉。这通常被视为一个买入信号，预示着股票价格可能会上涨。死叉则是当短期均线从上方向下穿越长期均线时，形成的交叉称为死叉。这通常被视为一个卖出信号，预示着股票价格可能会下跌。 经过系统计算，过去100天里{{buy_date|join(', ')}} 适合买入， {{sell_date|join(', ')}}适合卖出。图如下：</p>
+   <section class="chart-section"> 
+    <img src="{{ url_for('static', filename='images/GD_cha.png') }}" alt="Gold and Death Cross Chart" /> 
+   </section> 
+   <h2>预测未来30个股票日内股票买入卖出分析</h2> 
+   <p style="text-indent:2em;">   通过预测，未来30股票日天里,
+    {% if future_golden != [] %} </p>
+   <p style="text-indent:2em;">{{ future_golden[0] }}个股票交易日后适合买入。</p> {% else %}
+   <p style="text-indent:2em;">没有时间适合买入</p>
+   {% endif %}  
+   {% if future_death != [] %} 
+   <p style="text-indent:2em;">{{ future_death[0]}}个股票交易日后适合卖出。</p> {% else %}
+   <p style="text-indent:2em;">没有时间适合卖出。</p>
+   {% endif %}  图如下：
+   <p></p> 
+   <section class="chart-section"> 
+    <img src="{{ url_for('static', filename='images/Future_cha.png') }}" alt="Gold and Death Cross Chart" /> 
+   </section> 
+   <h2>K线图（月/日线）股票趋势分析</h2> 
+   <p style="text-indent:2em;">{{stock_name}}（股票代码：{{stock_detail_data.ts_code}}）通过k线图结合RSI指数分析：RSI 是一个动量振荡器，衡量最近价格变动的速度和幅度，以评估股票或资产的超买或超卖条件。</p>
+   <p style="text-indent:2em;">当前股票的预测结果为:{{k_suggest}}</p>
+   <p>K线图（日线）如下：</p>
+   <section class="chart-section"> 
+    <img src="{{ url_for('static', filename='images/candlestick_chart.png') }}" alt="Gold and Death Cross Chart" /> 
+   </section> 
+   <p>K线图（月线）如下：</p>
+   <section class="chart-section"> 
+    <img src="{{ url_for('static', filename='images/monthly_candlestick_chart.png') }}" alt="Gold and Death Cross Chart" /> 
+   </section> 
+   <section class="chart-section"> 
+    <h2>ATR图分析</h2>
+    <p style="text-indent:2em;">在{{stock_name}}ATR的指标图中，我们可以看到该股票在这一年内的ATR指标情况，在多个时期里股票的ATR值相对较低，表明市场波动性较小，
+        股价变动幅度有限，意味着{股票名称}在这一段时间内的股价相对稳定；同时我们也可以看到在另外的一些时间段内，股票的ATR值相对较高，
+        表示市场波动性增大，股价波动幅度较大，说明该股票在这一段时期内股价存在时而偏高时而偏低的不稳定情况，对于波动性较高的股票，
+        建议设置较宽的止损或止盈区间，对于波动性较低的股票，可以考虑较紧的交易策略。</p>
+    <img src="{{ url_for('static', filename='images/Month_ATR.png') }}" alt="pct change" /> 
+   </section> 
+   <section class="chart-section"> 
+    <h2>布林带图分析</h2> 
+    <p style="text-indent:2em;">{{stock_name}}的布林带指标图如下，横坐标代表月份，纵坐标代表价格。图中用4条不同颜色的线分别表示了四种情况下的价格变化：
+         close price（收盘价）、SMA（移动平均值，红色）、Upper Band（上轨，绿色）、Lower Band（下轨，蓝色）。
+        如图我们可以看到{{stock_name}}在2023年里面的价格波动性情况，该股票在这一年内股价存在一定的波动情况，
+        在多个时期里股价接近或触及布林带，甚至存在股价突破布林带上轨或下轨的情况，暗示着在这个时期可能存在过度买入和过度卖出的情况，反映出市场的不确定性和波动性情况。</p>
+    <img src="{{ url_for('static', filename='images/Bollinger.png') }}" alt="pct change" /> 
+   </section> 
+   <section class="chart-section"> 
+    <h2>成交量</h2> 
+    <img src="{{ url_for('static', filename='images/amount.png') }}" alt="amount" /> 
+   </section> 
+   <section class="chart-section"> 
+    <h2>成交额</h2> 
+    <img src="{{ url_for('static', filename='images/volume.png') }}" alt="volume" /> 
+   </section> 
+   <section class="chart-section"> 
+    <h2>近期涨跌趋势</h2> 
+    <img src="{{ url_for('static', filename='images/pct_change.png') }}" alt="pct change" /> 
+   </section> 
+  </div>   
+ </body>
+</html>

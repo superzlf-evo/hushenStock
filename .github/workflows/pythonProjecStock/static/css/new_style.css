@@ -1,0 +1,110 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* background-color: #EAF2F8;  */
+    /* background-color:#f8f9fa; */
+    background-color: #d0fbe9;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #212529;
+}
+
+header {
+    background: #005f73;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
+.report-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #89c2d9;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.chart-section {
+    background-color: #61a5c2;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.chart-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.chart-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.chart-section h2 {
+    text-align: center;
+    color: #ffffff;
+}
+
+/* 链接和按钮样式 */
+a, .btn {
+    background-color: #3498DB;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+a:hover, .btn:hover {
+    background-color: #2874A6;
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #3498DB;
+    color: white;
+}
+
+td {
+    background-color: #FBFCFC;
+}
