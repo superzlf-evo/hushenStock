@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>沪深股票分析系统 | superzlf-evo</title>
-
-
+<h1 >沪深股票分析系统</h1>
  <h1 id="介绍">介绍</h1>
 <p>我们推出了一款专为沪深股市量身定制的股票分析系统。它是一款精心打造的工具，为用户提供简洁透明的股市行情。它的主要目标是帮助用户理解股市的日常波动，同时提供相关股票的背景信息。此外，它简化了复杂的市场数据，提供直观的股价波动图表，使投资者能够清晰地了解日常市场动态。 通过无缝地集成先进的算法和实时数据，我们的股票分析系统不仅仅是一个数据展示工具的角色；它成为了一个强大的决策支持系统。用户可以轻松地访问关键指标，对个股进行深入的研究，和洞察整体市场趋势。系统的直观界面确保即使是对金融市场知识有限的用户也可以快速地浏览和参与股票交易。系统自动分析沪深股市的数据，准确地捕捉每只股票的每日涨跌，以易于消化和直观的方式呈现给用户。用户可以轻松地浏览每日涨跌，从而快速把握市场趋势。系统的设计以用户友好为出发点，迎合了那些不太熟悉股市的人，使他们能够轻松地理解和获取关键信息。</p>
 <h1 id="获取数据">获取数据</h1>
@@ -74,13 +72,6 @@ Golden_cross表和Death_cross表。</p>
 <figure data-type="image" tabindex="5"><img src="https://superzlf-evo.github.io/post-images/1705216655931.png" alt="" loading="lazy"></figure>
 <figure data-type="image" tabindex="6"><img src="https://superzlf-evo.github.io/post-images/1705216664832.png" alt="" loading="lazy"></figure>
 <hr>
-
-
-
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
- 
 
 
 
